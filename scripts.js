@@ -8,6 +8,7 @@ var selectAnswer = questions[0].answer;
 var i = 0;
 var answerList = questions[0];
 var usrChoice;
+var score = 0;
 
 var answerBtn1 = document.querySelector("#answer1");
 var answerBtn2 = document.querySelector("#answer2");
@@ -56,7 +57,7 @@ function setAnswer(){
     answerThree = questions[i].choices[2];
     answerFour = questions[i].choices[3];
     selectAnswer = questions[i].answer;
-    console.log("infunction");
+    
     document.getElementById("Questions").innerText = questions1;
     document.getElementById("answer1").innerText = answerOne;
     document.getElementById("answer2").innerText = answerTwo;
@@ -68,8 +69,12 @@ function checkAnswer(){
     selectAnswer = questions[i].answer;
     if (selectAnswer === usrChoice){
         console.log("right");
+        score++;
+        console.log(score);
     }
     else{
         console.log("not right");
+        console.log(score);
     }
 }
+
