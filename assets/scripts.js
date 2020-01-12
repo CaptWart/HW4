@@ -7,13 +7,13 @@ document.getElementById("answer4").innerText = questions[0].choices[3];
 
 var questionNum = 0;
 var score = 0;
+var currentNameScores = localStorage.getItem("highscore");
 
 
 document.addEventListener("click", function(){
     var buttonSelector = event.toElement;
     var childrenEle = event.toElement;
     var thing = childrenEle.parentNode.children;
-
     event.preventDefault();
 
     if(childrenEle.innerText === "Start"){
@@ -28,7 +28,6 @@ document.addEventListener("click", function(){
         childrenEle.type === 'submit' && 
         questionNum < 5 && 
         childrenEle.innerText != "Start"){
-
         console.log('correct');
         score ++;
         questionNum++;        
@@ -42,27 +41,43 @@ document.addEventListener("click", function(){
     }
 
     else if(questionNum == 5){
+        event.stopPropagation();
         document.getElementById("answer1").style.display = "none";
         document.getElementById("answer2").style.display = "none";
         document.getElementById("answer3").style.display = "none";
         document.getElementById("answer4").style.display = "none";
         document.getElementById("initials").style.display = "block";
-        document.getElementById("submit").style.display = "block";
-        document.getElementById("submit").innerText = "submit";
+        document.getElementById("submitName").style.display = "block";
+        document.getElementById("submitName").innerText = "submit";
         document.getElementById("Questions").innerText = "ENTER YOUR INITIALS";
         document.getElementById("header").style.display = "block";
         document.getElementById("header").innerText = "All Done";
         document.getElementById("final").style.display = "block";
         document.getElementById("final").innerText = "Your final score " + score;
-
-        document.getElementById("submit").addEventListener("click", function () {
-            submit();
-        });
+        
     }
 
     
 });
 
+document.getElementById("submitName").addEventListener("click", function(){
+    var name = document.getElementById("initials").value;
+    if(name === ''){
+        alert("please enter valid name");
+    }
+    else{
+        if(currentNameScores === null){
+            currentNameScores = '';
+            currentNameScores = currentNameScores+name+" - "+score+","; 
+            localStorage.setItem("highscore", currentNameScores)
+        }
+        else{
+            currentNameScores = currentNameScores+name+" - "+score+","; 
+            localStorage.setItem("highscore", currentNameScores);
+        }
+        window.location = 'highscores.html';
+    }
+});
 
 
 function setAnswer(er){
@@ -73,7 +88,3 @@ function setAnswer(er){
 
 }
 
-function submit(){
-    console.log("done");
-    window.location.href = 'highscores.html';
-}
