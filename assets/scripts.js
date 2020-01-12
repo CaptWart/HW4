@@ -39,7 +39,6 @@ document.addEventListener("click", function(){
         questionNum++;        
         console.log('wrong');
         setAnswer(thing);
-        console.log(questionNum);
     }
 
     else if(questionNum == 5){
@@ -55,7 +54,10 @@ document.addEventListener("click", function(){
         document.getElementById("header").innerText = "All Done";
         document.getElementById("final").style.display = "block";
         document.getElementById("final").innerText = "Your final score " + score;
-        submit();
+
+        document.getElementById("submit").addEventListener("click", function () {
+            submit();
+        });
     }
 
     
@@ -73,4 +75,5 @@ function setAnswer(er){
 
 function submit(){
     console.log("done");
+    window.location.href = 'highscores.html';
 }
