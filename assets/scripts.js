@@ -24,40 +24,31 @@ document.addEventListener("click", function(){
         document.getElementById("answer4").style.display = "block";
         document.getElementById("start").style.display = "none";
     }
-    if(buttonSelector.innerText === questions[0].answer && 
+    if(buttonSelector.innerText === questions[questionNum].answer && 
         childrenEle.type === 'submit' && 
-        questionNum < 5 && 
+        questionNum <= 5 && 
         childrenEle.innerText != "Start"){
-        console.log('correct');
         score ++;
         questionNum++;        
-        setAnswer(thing);
+        if(questionNum == 6){
+            changeWindow();
+        }
+        else{
+            setAnswer(thing);
+        };
     }
-    else if(childrenEle.type === 'submit' && questionNum < 5 && childrenEle.innerText != "Start")
+    else if(childrenEle.type === 'submit' && questionNum <= 5 && childrenEle.innerText != "Start")
     {
         questionNum++;        
-        console.log('wrong');
-        setAnswer(thing);
-    }
 
-    else if(questionNum == 5){
-        event.stopPropagation();
-        document.getElementById("answer1").style.display = "none";
-        document.getElementById("answer2").style.display = "none";
-        document.getElementById("answer3").style.display = "none";
-        document.getElementById("answer4").style.display = "none";
-        document.getElementById("initials").style.display = "block";
-        document.getElementById("submitName").style.display = "block";
-        document.getElementById("submitName").innerText = "submit";
-        document.getElementById("Questions").innerText = "ENTER YOUR INITIALS";
-        document.getElementById("header").style.display = "block";
-        document.getElementById("header").innerText = "All Done";
-        document.getElementById("final").style.display = "block";
-        document.getElementById("final").innerText = "Your final score " + score;
-        
-    }
+        if(questionNum == 6){
+            changeWindow();
+        }
+        else{
+            setAnswer(thing);        
+        };
 
-    
+    };
 });
 
 document.getElementById("submitName").addEventListener("click", function(){
@@ -88,3 +79,18 @@ function setAnswer(er){
 
 }
 
+function changeWindow(){
+    event.stopPropagation();
+    document.getElementById("answer1").style.display = "none";
+    document.getElementById("answer2").style.display = "none";
+    document.getElementById("answer3").style.display = "none";
+    document.getElementById("answer4").style.display = "none";
+    document.getElementById("initials").style.display = "block";
+    document.getElementById("submitName").style.display = "block";
+    document.getElementById("submitName").innerText = "submit";
+    document.getElementById("Questions").innerText = "ENTER YOUR INITIALS";
+    document.getElementById("header").style.display = "block";
+    document.getElementById("header").innerText = "All Done";
+    document.getElementById("final").style.display = "block";
+    document.getElementById("final").innerText = "Your final score " + score;
+}
