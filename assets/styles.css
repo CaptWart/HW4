@@ -1,0 +1,14 @@
+.wrapper{
+    position: relative;
+    margin: auto;
+    text-align: center;
+    width: 600px;
+}
+
+#form{
+    height: 400px;
+    background-color: gray;
+}
+.hidden{
+    display: none;
+}

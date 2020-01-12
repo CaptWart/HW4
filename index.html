@@ -4,18 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/styles.css">
     <title>Document</title>
 </head>
 <body>
 
-    <form id="form">
+    <form id="form" class="wrapper">
         <div id="Questions">Question</div>
-        <button id="answer1" type="button">yes</button>
-        <button id="answer2"></button>
-        <button id="answer3"></button>
-        <button id="answer4"></button>
+        <button id="start">Start</button>
+        <button id="answer1" class="hidden"></button>
+        <button id="answer2" class="hidden"></button>
+        <button id="answer3" class="hidden"></button>
+        <button id="answer4" class="hidden"></button>
+        <h1 id="header" class="hidden"></h1>
+        <p id="final" class="hidden"></p>
+        <input id="initails" class="hidden"/>
+        <button id="submit" class="hidden"></button>
     </form>
-    <script type="text/javascript" src="questions.js"></script>
-    <script type="text/javascript" src="scripts.js"></script>
+    <script type="text/javascript" src="assets/questions.js"></script>
+    <script type="text/javascript" src="assets/scripts.js"></script>
 </body>
 </html>
