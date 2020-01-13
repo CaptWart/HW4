@@ -3,7 +3,6 @@ var questionNum = 0;
 var score = 0;
 var currentNameScores = localStorage.getItem("highscore");
 var startTime = 75;
-
 document.getElementById("Questions").innerText = "THANKS FOR STARTING THIS QUIZ";
 document.getElementById("answer1").innerText = questions[0].choices[0];
 document.getElementById("answer2").innerText = questions[0].choices[1];
@@ -42,9 +41,7 @@ document.addEventListener("click", function(){
         score ++;
         questionNum++;        
         if(questionNum == 5){
-            score = startTime;
-            startTime = 1;
-            changeWindow();
+            setScore();
         }
         else{
             setAnswer(thing);
@@ -55,9 +52,7 @@ document.addEventListener("click", function(){
         questionNum++;        
         startTime = startTime - 15; 
         if(questionNum == 5){
-            score = startTime;
-            startTime = 1;
-            changeWindow();
+            setScore();
         }
         else{
             setAnswer(thing);        
@@ -110,4 +105,12 @@ function changeWindow(){
 }
 
 
- 
+function setScore(){
+    if (startTime < 0){
+        startTime = 0;
+    }
+    score = startTime;
+    startTime = 1;
+    changeWindow();
+    
+}
