@@ -37,28 +37,26 @@ document.addEventListener("click", function(){
     }
     if(buttonSelector.innerText === questions[questionNum].answer && 
         childrenEle.type === 'submit' && 
-        questionNum <= 5 && 
+        questionNum <= 4 && 
         childrenEle.innerText != "Start"){
         score ++;
         questionNum++;        
-        if(questionNum == 6){
+        if(questionNum == 5){
             score = startTime;
-            console.log(score);
-            startTime = 0;
+            startTime = 1;
             changeWindow();
         }
         else{
             setAnswer(thing);
         };
     }
-    else if(childrenEle.type === 'submit' && questionNum <= 5 && childrenEle.innerText != "Start")
+    else if(childrenEle.type === 'submit' && questionNum <= 4 && childrenEle.innerText != "Start")
     {
         questionNum++;        
         startTime = startTime - 15; 
-        if(questionNum == 6){
+        if(questionNum == 5){
             score = startTime;
-            console.log(score);
-            startTime = 0;
+            startTime = 1;
             changeWindow();
         }
         else{
@@ -97,7 +95,6 @@ function setAnswer(er){
 }
 
 function changeWindow(){
-   // event.stopPropagation();
     document.getElementById("answer1").style.display = "none";
     document.getElementById("answer2").style.display = "none";
     document.getElementById("answer3").style.display = "none";
