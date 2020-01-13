@@ -1,13 +1,15 @@
 //some random stuff to try to organize my thoughts. No idea....
+var questionNum = 0;
+var score = 0;
+var currentNameScores = localStorage.getItem("highscore");
+var startTime = 75;
+
 document.getElementById("Questions").innerText = "THANKS FOR STARTING THIS QUIZ";
 document.getElementById("answer1").innerText = questions[0].choices[0];
 document.getElementById("answer2").innerText = questions[0].choices[1];
 document.getElementById("answer3").innerText = questions[0].choices[2];
 document.getElementById("answer4").innerText = questions[0].choices[3];
-
-var questionNum = 0;
-var score = 0;
-var currentNameScores = localStorage.getItem("highscore");
+document.getElementById("timer").innerHTML = startTime;
 
 
 document.addEventListener("click", function(){
@@ -23,6 +25,15 @@ document.addEventListener("click", function(){
         document.getElementById("answer3").style.display = "block";
         document.getElementById("answer4").style.display = "block";
         document.getElementById("start").style.display = "none";
+        
+        var startTimer = setInterval(function() {
+            startTime--;
+            document.getElementById("timer").innerHTML = startTime;
+            if (startTime <= 0){
+                changeWindow();
+                clearTimeout(startTimer);
+            }
+          }, 1000);
     }
     if(buttonSelector.innerText === questions[questionNum].answer && 
         childrenEle.type === 'submit' && 
@@ -31,6 +42,9 @@ document.addEventListener("click", function(){
         score ++;
         questionNum++;        
         if(questionNum == 6){
+            score = startTime;
+            console.log(score);
+            startTime = 0;
             changeWindow();
         }
         else{
@@ -40,8 +54,11 @@ document.addEventListener("click", function(){
     else if(childrenEle.type === 'submit' && questionNum <= 5 && childrenEle.innerText != "Start")
     {
         questionNum++;        
-
+        startTime = startTime - 15; 
         if(questionNum == 6){
+            score = startTime;
+            console.log(score);
+            startTime = 0;
             changeWindow();
         }
         else{
@@ -80,7 +97,7 @@ function setAnswer(er){
 }
 
 function changeWindow(){
-    event.stopPropagation();
+   // event.stopPropagation();
     document.getElementById("answer1").style.display = "none";
     document.getElementById("answer2").style.display = "none";
     document.getElementById("answer3").style.display = "none";
@@ -94,3 +111,6 @@ function changeWindow(){
     document.getElementById("final").style.display = "block";
     document.getElementById("final").innerText = "Your final score " + score;
 }
+
+
+ 

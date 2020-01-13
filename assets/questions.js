@@ -24,9 +24,9 @@ var questions = [
         choices: ["Answer1", "Answer2", "Answer3", "Answer4"],
         answer: "Answer3"
     },
-    {
-        title: "question 4",
-        choices: ["Answer1", "Answer2", "Answer3", "Answer4"],
-        answer: "Answer4"
-    },
+    // {
+    //     title: "question 4",
+    //     choices: ["Answer1", "Answer2", "Answer3", "Answer4"],
+    //     answer: "Answer4"
+    // },
   ];
